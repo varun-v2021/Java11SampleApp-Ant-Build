@@ -38,3 +38,11 @@ Make sure java compiler is set to 11 in Window -> preference or right click proj
 2. Execute below 
 
 	<Extracted jdk11 location>\jdk-11.0.1_windows-x64_bin\jdk-11.0.1\bin\java.exe -jar Java11Sample.jar
+	
+References:
+
+https://stackoverflow.com/questions/9930181/ant-build-not-working-unable-to-find-a-javac-compiler
+
+https://stackoverflow.com/questions/3143567/cannot-find-main-class-in-file-compiled-with-ant/3144290#3144290
+
+https://stackoverflow.com/questions/5893583/unable-to-run-ant-target-in-eclipse-getting-terminated-at-beginning-and-pointing

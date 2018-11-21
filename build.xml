@@ -1,0 +1,53 @@
+<project name="Java11Sample" default="execute" basedir=".">
+	<description>
+    simplest example build file
+  </description>
+	<!-- set global properties for this build -->
+	<!--<property name="src" location="src" />-->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+	<property name="version" value="1.0" />
+	<property name="project-lib" location="lib" />
+
+	<path id="project.class.path">
+		<pathelement location="${build}/classes" />
+		<fileset dir="${project-lib}" includes="**/*.jar" />
+	</path>
+
+	<target name="init" description="init called">
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac fork="true" srcdir="${src}" destdir="${build}" />
+	</target>
+
+	<target name="execute" depends="compile" description="generate the distribution">
+		<buildnumber />
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist}/lib" />
+
+
+		<manifest file="MANIFEST.MF">
+			<attribute name="Class-Path" value="." />
+			<attribute name="Main-Class" value = "com.java11.sample.MainClass"/>
+		</manifest>
+
+		<!--Put everything in ${build} into the MyApplication-${version}.${build.number}.jar -->
+		<jar manifest="MANIFEST.MF" destfile="${dist}/lib/Java11Sample.jar" basedir="${build}" />
+
+	</target>
+	<!--
+	<target name="execute" depends="compile">
+	    <java classname="com.java11.sample.MainClass" classpath="." />
+	</target> -->
+
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+</project>
